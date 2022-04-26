@@ -10,6 +10,7 @@
 
 #include "includes.h"
 #include "Enemy.h"
+#include "VisibleObject.h"
 
 
 //Window sizes
@@ -37,6 +38,7 @@ private:
 
 	//Game Objects
 	Enemy enemy;
+	VisibleObject sprite;
 	sf::RectangleShape floor;
 
 

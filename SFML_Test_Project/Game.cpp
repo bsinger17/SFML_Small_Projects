@@ -19,6 +19,7 @@ void Game::initWindow()
 void Game::initGameObjects()
 {
 	enemy.initEnemy(window);
+	sprite.initObject(window);
 }
 
 
@@ -85,6 +86,7 @@ void Game::update()
 	} 
 
 	enemy.updateEnemy(velocity);
+	sprite.updateObject();
 	//std::cout << "mouse position (x,y): " << sf::Mouse::getPosition(*window).x << "   " << sf::Mouse::getPosition(*window).y << "\n";
 	//std::cout << "Number of Enemies: " << enemies.size() << "\n";
 	//std::cout << "floor pos: " << floor.getPosition().y << "\n";
@@ -100,6 +102,7 @@ void Game::render()
 	floor.setPosition(sf::Vector2(0.f, static_cast<float>(window->getSize().y/2 + 100)));
 	window->draw(floor);
 	enemy.renderEnemy();
+	sprite.renderObject();
 	window->display();
 }
 
