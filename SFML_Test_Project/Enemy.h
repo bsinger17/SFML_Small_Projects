@@ -6,7 +6,7 @@ class Enemy
 private:
 
 	//Enemy Attributes
-	sf::Color color = sf::Color::Red;
+	sf::Color color = sf::Color::Black;
 	sf::Vector2<float> size = sf::Vector2(50.f, 50.f);
 	sf::Vector2<float> start_position = sf::Vector2(30.f,30.f);
 	float outline_thickness = 1.f;

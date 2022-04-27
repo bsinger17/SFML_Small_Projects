@@ -20,6 +20,7 @@ void Game::initGameObjects()
 {
 	enemy.initEnemy(window);
 	sprite.initObject(window);
+	screen.initScreen(window);
 }
 
 
@@ -97,6 +98,7 @@ void Game::update()
 void Game::render()
 {
 	window->clear();
+	screen.render();
 	floor.setFillColor(sf::Color::White);
 	floor.setSize(sf::Vector2(static_cast<float>(window->getSize().x), 3.f));
 	floor.setPosition(sf::Vector2(0.f, static_cast<float>(window->getSize().y/2 + 100)));

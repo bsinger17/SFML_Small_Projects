@@ -11,6 +11,7 @@
 #include "includes.h"
 #include "Enemy.h"
 #include "VisibleObject.h"
+#include "Screen.h"
 
 
 //Window sizes
@@ -37,6 +38,7 @@ private:
 	Velocity velocity{};
 
 	//Game Objects
+	Screen screen;
 	Enemy enemy;
 	VisibleObject sprite;
 	sf::RectangleShape floor;
