@@ -8,6 +8,8 @@ void Game::initVariables()
 	videoMode.height = WindowHeight;
 	videoMode.width = WindowWidth;
 	GameTitle = "myGame";
+	input_key_released_x = true;
+	input_key_released_y = true;
 }
 
 void Game::initWindow()
@@ -36,16 +38,16 @@ void Game::pollEvents()
 			break;
 		case sf::Event::KeyPressed:
 			if (event.key.code == sf::Keyboard::Escape) window->close();
-			if (event.key.code == sf::Keyboard::Right) { velocity.x = enemy.getMaxVelocity().first; }
-			if (event.key.code == sf::Keyboard::Left) { velocity.x = -enemy.getMaxVelocity().first; }
-			if (event.key.code == sf::Keyboard::Down) { velocity.y = enemy.getMaxVelocity().second; }
-			if (event.key.code == sf::Keyboard::Up) { velocity.y = -enemy.getMaxVelocity().second; }
+			if (event.key.code == sf::Keyboard::Right) { velocity.x = enemy.getMaxVelocity().first; input_key_released_x = false; }
+			if (event.key.code == sf::Keyboard::Left) { velocity.x = -enemy.getMaxVelocity().first; input_key_released_x = false;}
+			if (event.key.code == sf::Keyboard::Down) { velocity.y = enemy.getMaxVelocity().second; input_key_released_y = false;}
+			if (event.key.code == sf::Keyboard::Up) { velocity.y = -enemy.getMaxVelocity().second; input_key_released_y = false;}
 			break;
 		case sf::Event::KeyReleased:
-			if (event.key.code == sf::Keyboard::Right) { velocity.x = 0.f; }
-			if (event.key.code == sf::Keyboard::Left) { velocity.x = 0.f; }
-			if (event.key.code == sf::Keyboard::Down) { velocity.y = 0.f;}
-			if (event.key.code == sf::Keyboard::Up) { velocity.y = 0.f;}
+			if (event.key.code == sf::Keyboard::Right) { velocity.x -= 0.1f; input_key_released_x = true;}
+			if (event.key.code == sf::Keyboard::Left) { velocity.x -= 0.f; input_key_released_x = true;}
+			if (event.key.code == sf::Keyboard::Down) { velocity.y = 0.f; input_key_released_x = true;}
+			if (event.key.code == sf::Keyboard::Up) { velocity.y = 0.f; input_key_released_x = true;}
 			break;
 		default:
 			break;
@@ -80,13 +82,13 @@ void Game::update()
 	updateMousePositions();
 
 	//"collision" with the floor
-	if (enemy.intersects(floor))  
-	{
-		velocity.x = 0;
-		velocity.y = 0;
-	} 
+	//if (enemy.intersects(floor))  
+	//{
+	//	//velocity.x = 0;
+	//	enemy.setPosition(sf::Vector2f(enemy.getPosition().x, floor.getPosition().y));
+	//} 
 
-	enemy.updateEnemy(velocity);
+	enemy.updateEnemy(velocity, floor, input_key_released_x, input_key_released_y);
 	sprite.updateObject();
 	//std::cout << "mouse position (x,y): " << sf::Mouse::getPosition(*window).x << "   " << sf::Mouse::getPosition(*window).y << "\n";
 	//std::cout << "Number of Enemies: " << enemies.size() << "\n";

@@ -13,8 +13,9 @@ private:
 
 	//enemy logic
 	int move_state = 0;
-	float move_velocity_x = 3.f;
-	float move_velocity_y = 3.f;
+	float move_velocity_x = 1.f;
+	float move_velocity_y = 1.f;
+
 
 	//Enemy objects
 	sf::RectangleShape enemy;
@@ -32,9 +33,11 @@ public:
 	//public functions
 	void initEnemy(sf::RenderTarget* tar);
 	bool intersects(const sf::RectangleShape& rect);
-	void updateEnemy(Velocity velocity);
+	void updateEnemy(Velocity velocity, const sf::RectangleShape& floor, bool input_released_x, bool input_released_y);
 	void renderEnemy();
 	std::pair<float, float> getMaxVelocity();
+	void setPosition(sf::Vector2f);
+	sf::Vector2f getPosition();
 
 
 };

@@ -27,6 +27,8 @@ private:
 	sf::Event event;
 	sf::VideoMode videoMode;
 	std::string GameTitle;
+	bool input_key_released_x;
+	bool input_key_released_y;
 
 	//mouse positions
 	sf::Vector2i mousePositionWindow;

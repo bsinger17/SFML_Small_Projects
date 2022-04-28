@@ -22,8 +22,7 @@ void VisibleObject::initObject(sf::RenderTarget* tar)
 
 void VisibleObject::updateObject()
 {
-	std::cout << object.getPosition().x << "\n";
-	;
+	//std::cout << object.getPosition().x << "\n";
 	if (object.getPosition().x >= (window_target->getSize().x - object.getGlobalBounds().width))
 	{
 		x_velocity = -1.5f;
